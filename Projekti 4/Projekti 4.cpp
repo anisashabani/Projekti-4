@@ -15,6 +15,18 @@ string emriLendes[NR_LENDEVE] = {
     "Shkathtesi Komunikuese"
 };
 
+struct Student {
+    string ID;
+    string Emri;
+    string Mbiemri;
+    int Nota[NR_LENDEVE];
+
+    void lexo();
+    double mesatare() const;
+    void shtyp() const;
+};
+
+
 int main()
 {
     return 0;
