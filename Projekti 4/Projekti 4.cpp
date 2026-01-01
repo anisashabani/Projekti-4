@@ -14,3 +14,8 @@ string emriLendes[NR_LENDEVE] = {
     "Lenda Zgjedhore",
     "Shkathtesi Komunikuese"
 };
+
+int main()
+{
+    return 0;
+}
