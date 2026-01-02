@@ -28,6 +28,7 @@ struct Student {
 double Student::mesatare() const {
     double s = 0;
     int count = 0;
+}
 
 void Student::lexo() {
     cout << "ID: ";
@@ -85,6 +86,7 @@ double mesatarjaPerLende(const Student S[], int n, int idxLende) {
     if (count == 0) return 0;
     return s / count;
 }
+
 
 int main()
 {
