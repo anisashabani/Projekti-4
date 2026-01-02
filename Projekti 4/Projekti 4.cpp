@@ -88,7 +88,97 @@ double mesatarjaPerLende(const Student S[], int n, int idxLende) {
 }
 
 
-int main()
-{
+int main() {
+    int n;
+    cout << "Shkruaj numrin e studenteve: ";
+    cin >> n;
+
+    if (n == 0) {
+        cout << "\nNuk u shtua asnje student.\n";
+        return 0;
+    }
+
+    if (n > MAX) {
+        cout << "Numri maksimal i studenteve eshte " << MAX << ".\n";
+        return 0;
+    }
+
+    Student S[MAX];
+
+    // ==============================
+    // Leximi i studenteve
+    // ==============================
+    for (int i = 0; i < n; i++) {
+        cout << "\nStudenti " << i + 1 << ":\n";
+        S[i].lexo();
+    }
+
+    // ==============================
+    // Mesatarja e secilit student + max/min
+    // ==============================
+    int idxMax = 0, idxMin = 0;
+    double maxAvg = S[0].mesatare();
+    double minAvg = S[0].mesatare();
+
+    cout << "\n==============================\n";
+    cout << "MESATARJA E SECILIT STUDENT\n";
+    cout << "==============================\n";
+
+    for (int i = 0; i < n; i++) {
+        double avg = S[i].mesatare();
+        cout << (i + 1) << ") "
+             << S[i].Emri << " " << S[i].Mbiemri
+             << " | ID: " << S[i].ID
+             << " | Mesatarja: " << avg << endl;
+
+        if (avg > maxAvg) {
+            maxAvg = avg;
+            idxMax = i;
+        }
+        if (avg < minAvg) {
+            minAvg = avg;
+            idxMin = i;
+        }
+    }
+
+    cout << "\nStudenti me mesataren ME TE MADHE: "
+         << S[idxMax].Emri << " " << S[idxMax].Mbiemri
+         << " (" << maxAvg << ")\n";
+
+    cout << "Studenti me mesataren ME TE VOGEL: "
+         << S[idxMin].Emri << " " << S[idxMin].Mbiemri
+         << " (" << minAvg << ")\n";
+
+    // ==============================
+    // Mesatarja per secilen lende
+    // ==============================
+    cout << "\n==============================\n";
+    cout << "MESATARJA PER SECILEN LENDE\n";
+    cout << "==============================\n";
+
+    for (int l = 0; l < NR_LENDEVE; l++) {
+        cout << "- " << emriLendes[l]
+             << ": " << mesatarjaPerLende(S, n, l) << endl;
+    }
+
+    // ==============================
+    // Fituesit e bursës
+    // ==============================
+    cout << "\n==============================\n";
+    cout << "FITUESIT E BURSES ELITARE STEM\n";
+    cout << "Kushti: Mesatarja > 8.5\n";
+    cout << "==============================\n";
+
+    int fitues = 0;
+    for (int i = 0; i < n; i++) {
+        if (S[i].mesatare() > 8.5) {
+            S[i].shtyp();
+            fitues++;
+        }
+    }
+
+    cout << "\nNumri i studenteve qe e plotesojne kushtin per burs: "
+         << fitues << endl;
+
     return 0;
 }
