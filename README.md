@@ -9,8 +9,8 @@ Programi funksionon në mënyrë interaktive dhe përfundon ekzekutimin kur për
 ---
 
 ## Lëndët (Semestri 1)
-1. Algjeber Lineare & Kalkulus 1  
-2. Fizike për Inxhinieri 1  
+1. Algjebër Lineare & Kalkulus 1  
+2. Fizikë për Inxhinieri 1  
 3. Bazat e Inxhinierisë Elektrike 1  
 4. Bazat e Programimit  
 5. Lënda Zgjedhore  
