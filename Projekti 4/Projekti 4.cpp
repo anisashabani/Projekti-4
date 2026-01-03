@@ -25,9 +25,15 @@ struct Student {
     double mesatare() const;
     void shtyp() const;
 };
-double Student::mesatare() const {
-    double s = 0;
-    int count = 0;
+
+
+// ----------- Kontroll PO / JO  -----------
+bool eshtePo(string s) {
+    return (s == "po" || s == "Po" || s == "PO" || s == "p" || s == "P");
+}
+
+bool eshteJo(string s) {
+    return (s == "jo" || s == "Jo" || s == "JO" || s == "j" || s == "J");
 }
 
 void Student::lexo() {
@@ -58,9 +64,11 @@ void Student::shtyp() const {
 
     cout << "Mesatarja (pa notat < 5): " << mesatare() << endl;
 }
-if (n == 0) {
-    cout << "\nNuk u shtua asnje student.\n";
-    return 0;
+
+double Student::mesatare() const {
+    double s = 0;
+    int count = 0;
+
     for (int i = 0; i < NR_LENDEVE; i++) {
         if (Nota[i] >= 5) {
             s += Nota[i];
@@ -87,35 +95,44 @@ double mesatarjaPerLende(const Student S[], int n, int idxLende) {
     return s / count;
 }
 
-
 int main() {
-    int n;
-    cout << "Shkruaj numrin e studenteve: ";
-    cin >> n;
+Student S[MAX];
+int n = 0;
 
-    if (n == 0) {
+// Shtimi i studenteve derisa te shkruhet "jo"
+while (true) {
+    string pergjigje;
+
+    // pyet derisa te jete po/jo
+    while (true) {
+        cout << "\nA don me shtu student? (po/jo): ";
+        cin >> pergjigje;
+
+        if (eshtePo(pergjigje) || eshteJo(pergjigje))
+            break;
+
+        cout << "Input i pavlefshem! Shkruaj vetem po ose jo.\n";
+    }
+
+    if (eshteJo(pergjigje))
+        break;
+
+    if (n >= MAX) {
+        cout << "U arrit limiti i studenteve.\n";
+        break;
+    }
+
+    cout << "\nShto studentin #" << (n + 1) << endl;
+    S[n].lexo();
+    n++;
+}
+  if (n == 0) {
         cout << "\nNuk u shtua asnje student.\n";
         return 0;
     }
+  
 
-    if (n > MAX) {
-        cout << "Numri maksimal i studenteve eshte " << MAX << ".\n";
-        return 0;
-    }
-
-    Student S[MAX];
-
-    // ==============================
-    // Leximi i studenteve
-    // ==============================
-    for (int i = 0; i < n; i++) {
-        cout << "\nStudenti " << i + 1 << ":\n";
-        S[i].lexo();
-    }
-
-    // ==============================
     // Mesatarja e secilit student + max/min
-    // ==============================
     int idxMax = 0, idxMin = 0;
     double maxAvg = S[0].mesatare();
     double minAvg = S[0].mesatare();
